@@ -1,0 +1,14 @@
+{% extends 'techno/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container detail-container">
+        {% for g in goods %}
+            <h1 class="main-description">{{g.title}}</h1>
+            <img class="img-goods" src="{% static 'techno/image/non-ico.jpg' %}" alt="Фото {{g.title}}">
+
+            <p class="price">{{g.price}}</p>
+            <p class="content">{{g.content}}</p>
+        {% endfor %}
+    </div>
+{% endblock content %}
