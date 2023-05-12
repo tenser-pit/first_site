@@ -4,10 +4,10 @@ from .models import *
 
 
 class CommodityAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'price', 'photo',)
+    list_display = ('id', 'title', 'price', 'image',)
     list_display_links = ('title',)
     search_fields = ('title', 'content')
-    list_filter = ('time_create', 'price',)
+    list_filter = ('price',)
     prepopulated_fields = {'slug': ('title',)}
 
 
