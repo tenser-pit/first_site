@@ -1,0 +1,15 @@
+{% extends 'commodity/base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="main-description">Список категорий товаров</h1>
+    <div class="container category-container">
+        {% for c in cats %}
+            <div class="block-category">
+                <a class="category-info" href="{{c.get_absolute_url}}">
+                    <img class="photo-category" src="{% static 'commodity/image/non-ico.jpg' %}" alt="Фото:{{c.name}}">
+                    <p class="name-category">{{c.name}}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
