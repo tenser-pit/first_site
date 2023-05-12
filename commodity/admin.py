@@ -18,5 +18,12 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    list_display_links = ('id', 'name')
+    search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(Commodity, CommodityAdmin)
 admin.site.register(Category, CategoryAdmin)
