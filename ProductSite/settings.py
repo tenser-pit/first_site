@@ -145,7 +145,8 @@ CACHES = {
     }
 }
 
-
+# Users
+AUTH_USER_MODEL = 'user_data.User'
 
 
 
