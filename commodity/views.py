@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView, CreateView
-from django.core import paginator
 
 from .forms import *
 from .utils import *
@@ -52,7 +51,7 @@ class TGoods(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Товар:' + Commodity.objects.get(slug=self.kwargs['goods_slug']).title,
+        c_def = self.get_user_context(title='Товар:' + Commodity.objects.get(slug=self.kwargs['goods_slug']).name,
                                       goods_slug=self.kwargs['goods_slug'])
         return dict(list(context.items()) + list(c_def.items()))
 

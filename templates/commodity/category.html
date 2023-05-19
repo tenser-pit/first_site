@@ -13,8 +13,8 @@
             {% for g in goods %}
                 <div class="goods">
                     <a class="link-goods" href="{{g.get_absolute_url}}">
-                        <img class="img-goods" src="{% static 'commodity/image/non-ico.jpg' %}" alt="Фото {{g.title}}">
-                        <p class="name-goods">{{g.title}}</p>
+                        <img class="img-goods" src="{% static 'commodity/image/non-ico.jpg' %}" alt="Фото {{g.name }}">
+                        <p class="name-goods">{{g.name }}</p>
                     </a>
                         <pre>{{g.price}}</pre>
                     <button class="add-to-cart" type="submit">Купить</button>
