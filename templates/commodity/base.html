@@ -14,27 +14,27 @@
 <!--    Header -->
     <header class="header">
         <div class="container header-container">
-            <a class="logo" href="{% url 'home' %}">
+            <a class="logo" href="{% url 'commodity:home' %}">
                 <img class="logo-img" src="{% static 'commodity/image/logo.png' %}" alt="главная страница/картинка">
             </a>
             <nav class="nav">
                 <ul class="nav-list">
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'cart' %}">Корзина</a>
+                            <a class="nav-link" href="{% url 'commodity:cart' %}">Корзина</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">Профиль пользователя</a>
+                            <a class="nav-link" href="{% url 'user_data:profile' %}">Профиль пользователя</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                            <a class="nav-link" href="{% url 'user_data:logout' %}">Выйти</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                            <a class="nav-link" href="{% url 'user_data:login' %}">Войти</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
+                            <a class="nav-link" href="{% url 'user_data:register' %}">Регистрация</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -56,10 +56,10 @@
                 <nav class="footer-nav">
                     <ul class="footer-nav-list">
                         <li class="footer-nav-item">
-                            <a class="footer-nav-link" href="{% url 'about' %}">О сайте</a>                            </a>
+                            <a class="footer-nav-link" href="{% url 'commodity:about' %}">О сайте</a>                            </a>
                         </li>
                         <li class="footer-nav-item">
-                            <a class="footer-nav-link" href="{% url 'contact' %}">Контакты</a>                            </a>
+                            <a class="footer-nav-link" href="{% url 'commodity:contact' %}">Контакты</a>                            </a>
                         </li>
                     </ul>
                 </nav>

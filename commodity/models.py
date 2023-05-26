@@ -23,6 +23,7 @@ class Commodity(models.Model):
         verbose_name = 'Все товары'
         verbose_name_plural = 'Все товары'
         ordering = ['name', 'price']
+        indexes = [models.Index(fields=['name'])]
 
 
 class Category(models.Model):
@@ -39,7 +40,8 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Все категории'
-        ordering = ['id']
+        ordering = ['name']
+        indexes = [models.Index(fields=['name'])]
 
 
 class Author(models.Model):
@@ -56,5 +58,5 @@ class Author(models.Model):
     class Meta:
         verbose_name = 'Автор'
         verbose_name_plural = 'Авторы'
-        ordering = ['id']
-
+        ordering = ['name']
+        indexes = [models.Index(fields=['name'])]

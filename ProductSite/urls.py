@@ -22,7 +22,8 @@ from commodity.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('commodity.urls')),
+    path('', include('commodity.urls', namespace='commodity')),
+    path('', include('user_data.urls', namespace='user_data')),
     path('captcha/', include('captcha.urls')),
 
 ]
@@ -32,7 +33,3 @@ if settings.DEBUG:
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-handler404 = pageNotFound
-
