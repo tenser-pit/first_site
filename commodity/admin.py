@@ -2,7 +2,10 @@ from django.contrib import admin
 
 from .models import *
 
+# Декоратор admin.register замена admin.site.register()
 
+
+@admin.register(Commodity)
 class CommodityAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'image',)
     list_display_links = ('name',)
@@ -11,20 +14,9 @@ class CommodityAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     list_display_links = ('id', 'name')
     search_fields = ('name',)
     prepopulated_fields = {'slug': ('name',)}
-
-
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    list_display_links = ('id', 'name')
-    search_fields = ('name',)
-    prepopulated_fields = {'slug': ('name',)}
-
-
-admin.site.register(Commodity, CommodityAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Author, AuthorAdmin)

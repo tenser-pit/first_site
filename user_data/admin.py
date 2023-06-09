@@ -1,5 +1,11 @@
 from django.contrib import admin
+from user_data.models import UserData
 
-from user_data.models import User
+# Декоратор admin.register замена admin.site.register()
 
-admin.site.register(User)
+
+@admin.register(UserData)
+class UserAdmin(admin.ModelAdmin):
+    pass
+
+

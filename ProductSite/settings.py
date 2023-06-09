@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'captcha',
 ]
 
+# Users
+AUTH_USER_MODEL = 'user_data.UserData'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -145,5 +148,4 @@ CACHES = {
     }
 }
 
-# Users
-AUTH_USER_MODEL = 'user_data.User'
+
