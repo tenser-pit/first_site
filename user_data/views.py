@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
@@ -38,29 +38,25 @@ class UserRegister(CreateView):
 
 
 class UserProfile(LoginRequiredMixin, TemplateView):
-    model = ProfileForm
+    form_class = ProfileForm
     template_name = 'user_data/profile.html'
     raise_exception = True
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.form = None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Профиль пользователя'
-        context['form'] = self.form
         return context
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            self.form = UserProfile(data=request.POST)
-            if self.form.is_valid():
-                self.form.save()
-                return redirect('user')
-            else:
-                self.form = request.user
-        return super(UserProfile, self).dispatch(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(instance=request.user)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user_data:profile')
+        return render(request, self.template_name, {'form': form})
 
 
 def user_logout(request):
