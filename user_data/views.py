@@ -52,7 +52,7 @@ class UserProfile(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(data=request.POST)
+        form = self.form_class(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect('user_data:profile')

@@ -1,14 +1,16 @@
 {% extends 'commodity/base.html' %}
+{% load static %}
 {% block content %}
 <div class="profile">
     <div class="name-page">
         <h1 class="name-page">Профиль пользователя </h1>
     </div>
 
-    <form action="{% url 'user_data:profile' %}" method="post">
+    <form action="{% url 'user_data:profile' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="image-container">
-            <img width="100" height="100"  class="img-thumbnail" src="" alt="">
+            <img width="100" height="100"  class="img-thumbnail"
+                 src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'user_data/image/default_user.png' %} {% endif %}" alt="">
             {{ form.image }}
             <label for="{{ form.image.id_for_label }}">Выберите изображение</label>
         </div>
