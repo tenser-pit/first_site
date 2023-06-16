@@ -1,1 +1,36 @@
 {% extends 'commodity/base.html' %}
+{% block content %}
+<div class="profile">
+    <div class="name-page">
+        <h1 class="name-page">Профиль пользователя </h1>
+    </div>
+
+    <form action="{% url 'user_data:profile' %}" method="post">
+        {% csrf_token %}
+        <div class="image-container">
+            <img width="100" height="100"  class="img-thumbnail" src="" alt="">
+            {{ form.image }}
+            <label for="{{ form.image.id_for_label }}">Выберите изображение</label>
+        </div>
+        <div class="form-row">
+            <label class= "small" for="{{ form.first_name.id_for_label }}">Имя</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-row">
+            <label class= "small" for="{{ form.last_name.id_for_label }}">Фамилия</label>
+            {{ form.last_name }}
+        </div>
+        <div class="form-row">
+            <label class= "small" for="{{ form.username.id_for_label }}">Имя пользователя</label>
+            {{ form.username }}
+        </div>
+        <div class="form-row">
+            <label class= "small" for="{{ form.email.id_for_label }}">Адрес электронной почты</label>
+            {{  form.email }}
+        </div>
+        <div class="form-row">
+            <input type="submit" value="Сохранить">
+        </div>
+    </form>
+</div>
+{% endblock  %}
