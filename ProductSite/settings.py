@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'commodity.apps.CommodityConfig',
+    'product.apps.ProductConfig',
     'user_data.apps.UserDataConfig',
+    'cart.apps.CartConfig',
 
     'debug_toolbar',
     'captcha',
@@ -148,4 +149,5 @@ CACHES = {
     }
 }
 
-
+# Session ID
+CART_SESSION_ID = 'cart'

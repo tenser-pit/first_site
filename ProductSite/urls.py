@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from ProductSite import settings
-from commodity.views import *
+from product.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('commodity.urls', namespace='commodity')),
+    path('', include('product.urls', namespace='product')),
     path('', include('user_data.urls', namespace='user_data')),
     path('captcha/', include('captcha.urls')),
 

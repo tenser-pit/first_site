@@ -18,7 +18,7 @@ class UserLogin(LoginView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('commodity:home')
+        return reverse_lazy('product:home')
 
 
 class UserRegister(CreateView):
@@ -34,7 +34,7 @@ class UserRegister(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('commodity:home')
+        return redirect('product:home')
 
 
 class UserProfile(LoginRequiredMixin, TemplateView):
@@ -61,5 +61,4 @@ class UserProfile(LoginRequiredMixin, TemplateView):
 
 def user_logout(request):
     logout(request)
-    return redirect('commodity:home')
-
+    return redirect('product:home')

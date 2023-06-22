@@ -5,8 +5,8 @@ from .models import *
 # Декоратор admin.register замена admin.site.register()
 
 
-@admin.register(Commodity)
-class CommodityAdmin(admin.ModelAdmin):
+@admin.register(Products)
+class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'image',)
     list_display_links = ('name',)
     search_fields = ('name', 'content')
