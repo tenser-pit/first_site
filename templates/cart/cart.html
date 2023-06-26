@@ -1,0 +1,45 @@
+{% extends 'product/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="cart-title">Корзина товаров</h1>
+    {% if cart %}
+        <div class="cart-page">
+            <div class="name-page"></div>
+        </div>
+        {% for item in cart %}
+
+{#            {% with product=item.product  %}#}
+                    <div class="cart-body">
+                    <a href="{{ item.product.get_absolute_url }}" class="prod_image">
+                        <img src="{% if item.product.image %}
+                                        {{ item.product.image }}
+                                  {% else %}
+                                        {% static 'product/image/non-ico.jpg' %}
+                                  {% endif %}"
+                             alt="Product_Image">
+                    </a>
+                    <h5 class="cart-title">Название: {{ item.product.name}}</h5>
+                    <p class="cart-quant">Количество: {{ item.quantity }}</p>
+                    <a href="{% url 'cart:add_cart' item.product.id %}" class="add-one">
+                        <button class="" type="button"></button>
+                    </a>
+                        <a href="{% url 'cart:decrease_cart' item.product.id %}" class="dec-one">
+                            <button class="" type="button"></button>
+                        </a>
+                    <p class="cart-price">Цена за 1ед: {{ item.product.price }}</p>
+                    <p class="cart-price">Стоимость: {{ item.total_price }}</p>
+                    <a href="{% url 'cart:remove_cart' item.product.id %}" class="remove">
+                        <button class="remove" type="button"></button>
+                    </a>
+                </div>
+{#            {% endwith %}#}
+        {% endfor %}
+        <h3 class="total_price">Итоговая стоимость: {{ cart.get_total_price }}</h3>
+        <p class="text-right">
+            <a href="{% url 'product:home' %}" class="button-light">На главную</a>
+        </p>
+    {% else %}
+        <h4 class="text-center">Корзина пуста </h4>
+    {% endif %}
+{% endblock %}

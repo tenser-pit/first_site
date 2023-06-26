@@ -22,8 +22,9 @@ from product.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('product.urls', namespace='product')),
-    path('', include('user_data.urls', namespace='user_data')),
+    path('shop/', include('product.urls', namespace='product')),
+    path('user/', include('user_data.urls', namespace='user_data')),
+    path('cart/', include('cart.urls', namespace='cart')),
     path('captcha/', include('captcha.urls')),
 
 ]

@@ -13,11 +13,11 @@
             {% for product in products %}
                 <div class="goods">
                     <a class="link-goods" href="{{product.get_absolute_url}}">
-                        <img class="img-goods" src="{% static 'commodity/image/non-ico.jpg' %}" alt="Фото {{product.name }}">
+                        <img class="img-goods" src="{% static 'product/image/non-ico.jpg' %}" alt="Фото {{product.name }}">
                         <p class="name-goods">{{product.name }}</p>
                     </a>
                         <pre>{{product.price}}</pre>
-                    <a href="{% url 'product:add_cart' product.id %}" class="add-to-cart">
+                    <a href="{% url 'cart:add_cart' product.id %}" class="add-to-cart">
                         <button class="add-to-cart" type="button">Купить</button>
                     </a>
                 </div>

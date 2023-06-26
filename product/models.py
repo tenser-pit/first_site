@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from user_data.models import UserData
+# from user_data.models import UserData
 from ProductSite import settings
 
 
@@ -44,11 +44,3 @@ class Products(models.Model):
         ordering = ['name', 'price']
         indexes = [models.Index(fields=['name'])]
 
-
-class Cart(models.Model):
-    quantity = models.PositiveSmallIntegerField(default=0)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    product = models.ForeignKey('Products', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'Корзина для {self.user.username} | Продукт: {self.product.name}'

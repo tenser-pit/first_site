@@ -55,34 +55,6 @@ class ProdGoods(ListView):
         return Products.objects.filter(slug=self.kwargs['product_slug'])
 
 
-class ProdCart(ListView):
-    model = Cart
-    context_object_name = 'cart'
-    template_name = 'product/cart.html'
-    raise_exception = True
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Корзина товаров'
-        return context
-
-    def get_queryset(self):
-        return Cart.objects.filter(user=self.request.user)
-
-
-def add_cart(request, product_id):
-    product = Products.objects.get(id=product_id)
-    cart = Cart.objects.filter(user=request.user, product=product)
-
-    if not cart.exists():
-        Cart.objects.create(user=request.user, product=product, quantity=1)
-    else:
-        current_cart = cart.first()
-        current_cart.quantity += 1
-        current_cart.save()
-
-    return redirect(request.META['HTTP_REFERER'])
-
 
 def about(request):
     return render(request, 'product/about.html')
