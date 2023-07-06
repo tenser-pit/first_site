@@ -1,18 +1,41 @@
+from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound
+from django.views import View
 from django.views.generic import ListView
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import *
 
+# class ProdHomeApi(APIView):
+#     def get(self, request):
+#         lst = Products.objects.all().values()
+#         return Response({'title': list(lst)})
+#
+#     def post(self, request):
+#         return Response({'post': 'adaw'})
+#
 
-class ProdHome(ListView):
+# TODO
+# class ProdHomeApi(generics.ListAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = ProductSerializer
+
+
+def product_main(request):
+    return render(request, 'product/index.html')
+
+
+class ProdMain(ListView):
     model = Category
     context_object_name = 'categories'
-    template_name = 'product/index.html'
+    template_name = 'product/main.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Главная страница'
+        context['title'] = 'Все категории'
         return context
 
     def get_queryset(self):

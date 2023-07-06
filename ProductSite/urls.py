@@ -22,7 +22,8 @@ from product.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', include('product.urls', namespace='product')),
+    # path('api/v1/', ProdHomeApi.as_view()), TODO: remove or remove
+    path('', include('product.urls', namespace='product')),
     path('user/', include('user_data.urls', namespace='user_data')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('captcha/', include('captcha.urls')),

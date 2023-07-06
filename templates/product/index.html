@@ -1,15 +1,11 @@
 {% extends 'product/base.html' %}
 {% load static %}
 {% block content %}
-    <h1 class="main-description">Список категорий товаров</h1>
-    <div class="container category-container">
-        {% for category in categories %}
-            <div class="block-category">
-                <a class="category-info" href="{{category.get_absolute_url}}">
-                    <img class="photo-category" src="{% static 'product/image/non-ico.jpg' %}" alt="Фото:{{category.name}}">
-                    <p class="name-category">{{category.name}}</p>
-                </a>
-            </div>
-        {% endfor %}
+    <div class="text-title">
+        <h1 class="">Добро пожаловать, Wellcum</h1>
     </div>
+    <div class="text-content">
+        <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci aliquam amet, asperiores aspernatur culpa cumque doloribus earum facilis, fuga, illo iure nihil obcaecati praesentium quia rerum sapiente sequi voluptatem!</h4>
+    </div>
+
 {% endblock content %}

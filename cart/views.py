@@ -3,6 +3,7 @@ from django.views.generic import ListView
 
 from product.models import Products
 from .cart import Cart
+from .models import OrderProduct
 
 
 def cart_detail(request):
@@ -41,11 +42,14 @@ def remove_cart(request, product_id):
     return redirect(request.META['HTTP_REFERER'])
 
 
-
-
-
-# TODO это что такое
-# def product_detail(request, id, slug):
-#     product = get_object_or_404(Products, id=id, slug=slug, available=True)
-#     cart_product_form = CartAddProductForm
-#     return render(request,)
+def order_create(request):
+    cart = Cart(request)
+    if request.user.is_authenticated:
+        for item in cart:
+            OrderProduct.objects.create(user=request.user,
+                                        product=item['product'],
+                                        quantity=item['quantity'])
+        cart.clear()
+        return render(request, '')
+    else:
+        return redirect('user_data:login')
